@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class workTimeController extends Controller
 {
-    public function newCalc(){
-
+    public function newCalc(Request $request){
+        dd($request);
     }
 }

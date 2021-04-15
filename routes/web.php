@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\workTimeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/calculate_hours', ['as'=>'Calculo de horas trabalhadas' , 'uses'=>'WorkTimeController@newCalc']);
+Route::get('/calculate_hours', ['as'=>'Calculo de horas trabalhadas' , 'uses'=>'App\Http\Controllers\WorkTimeController@newCalc']);
 
 
