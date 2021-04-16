@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegistroGlobal extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'funcionario'
+        ,'diurno'
+        ,'noturno'
+    ];
 }

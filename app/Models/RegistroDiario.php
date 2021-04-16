@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegistroDiario extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'funcionario'
+        ,'entrada'
+        ,'saida'
+        ,'diurno'
+        ,'noturno'
+    ];
 }
