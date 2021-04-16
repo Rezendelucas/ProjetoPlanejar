@@ -23,9 +23,13 @@
     <section id="form">
         <div class="row">
             <div class="col-3" id="form-table">
-                <h4>Insira seu periodo de trabalho:</h4>
                 <form action="/calculate_hours" method="get">
                     @csrf
+                    <h4>Nome do funcionário:</h4>
+                    <div class="mb-3" style="width: 10vw">
+                        <input type="text" class="form-control" id="funcInput" name="func">
+                    </div>
+                    <h4>Insira seu periodo de trabalho:</h4>
                     <div class="mb-3" style="width: 10vw">
                         <label for="enterInput" class="form-label">Entrada:</label>
                         <input type="number" class="form-control" id="enterInput" name="enter">
@@ -55,7 +59,7 @@
                         </tr>
                         <tr>
                             <td>Jill</td>
-                            <td>Notunro</td>
+                            <td>Noturno</td>
                             <td>04:05</td>
                         </tr>
                     </tbody>
