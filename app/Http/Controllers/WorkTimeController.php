@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registro;
 use App\Models\RegistroDiario;
+use App\Models\RegistroGlobal;
 use DateTime;
 use Illuminate\Http\Request;
 use Symfony\Component\ErrorHandler\Debug;
@@ -60,34 +61,22 @@ class workTimeController extends Controller
             $saidaProcessada->modify('+1 day');
         }
 
-
         //cria um novo registro diario e o objeto que será inserido neste registro
-        $newRegistroD = new RegistroDiario();
-        $myRegistroD = [
+        $newRegistro = new RegistroDiario();
+        $myRegistro = [
          "funcionario" => $data['func'],
          "entrada"     => $entradaProcessada,
          "saida"       => $saidaProcessada,
          "diurno"      => sprintf('%02d:%02d', $contdiurno / 60, $contdiurno % 60),
          "noturno"     => sprintf('%02d:%02d', $contnoturno / 60, $contnoturno % 60),
         ];
-        $newRegistroD->cadastro($myRegistroD);
+        $newRegistro->cadastro($myRegistro);
         //dd($myRegistro);
 
 
-        //cria um novo registro global(acumulativo) e o objeto que será inserido neste registro
-        $newRegistroG = new RegistroDiario();
-        $myRegistroG = [
-            "funcionario" => $data['func'],
-            "diurno"      => sprintf('%02d:%02d', $contdiurno / 60, $contdiurno % 60),
-            "noturno"     => sprintf('%02d:%02d', $contnoturno / 60, $contnoturno % 60),
-        ];
-        $newRegistroG->cadastro($myRegistroG);
-
-
-
-
         //busca os registros a serem listados na view
-        $registros = Registro::select('registro')->distinct()->get();
+        $registros = $newRegistro->listagem();
+        dd($registros);
         return view('/' ,compact('registros'));
 
     }
