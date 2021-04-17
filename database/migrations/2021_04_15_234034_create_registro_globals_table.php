@@ -16,8 +16,8 @@ class CreateRegistroGlobalsTable extends Migration
         Schema::create('registro_globals', function (Blueprint $table) {
             $table->id();
             $table->string('funcionario');
-            $table->timestamp('diurno',$precision = 0);
-            $table->timestamp('noturno',$precision = 0);
+            $table->timestamp('diurno');
+            $table->timestamp('noturno');
         });
     }
 

@@ -16,11 +16,12 @@ class CreateRegistroDiariosTable extends Migration
         Schema::create('registro_diarios', function (Blueprint $table) {
             $table->id();
             $table->string('funcionario');
-            $table->date('data');
-            $table->timestamp('entrada',$precision = 0);
-            $table->timestamp('saida',$precision = 0);
-            $table->timestamp('diurno',$precision = 0);
-            $table->timestamp('noturno',$precision = 0);
+            $table->timestamp('entrada');
+            $table->timestamp('saida');
+            $table->string('diurno');
+            $table->string('noturno');
+            $table->timestamp('updated_at');
+            $table->timestamp('created_at');
         });
     }
 
