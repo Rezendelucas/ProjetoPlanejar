@@ -4,6 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -27,6 +28,8 @@ Vue.component('navComponent', require('./components/navComponent.vue').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import VueMask from 'v-mask';
+Vue.use(VueMask);
 
 const app = new Vue({
     name: "PlanejarForm",

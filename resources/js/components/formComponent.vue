@@ -12,11 +12,11 @@
                             <h4>Insira seu periodo de trabalho:</h4>
                             <div class="mb-3" style="width: 15vw">
                                 <label for="enterInput" class="form-label">Entrada:</label>
-                                <input type="text" class="form-control" id="enterInput" name="enter" v-model="hourEnter">
+                                <input type="text" class="form-control" id="enterInput" name="enter" v-model="hourEnter" v-mask="'##:##'">
                             </div>
                             <div class="mb-3" style="width: 15vw">
                                 <label for="exitInput" class="form-label">Saida:</label>
-                                <input type="text" class="form-control" id="exitInput" name="exit" v-model="hourExit">
+                                <input type="text" class="form-control" id="exitInput" name="exit" v-model="hourExit" v-mask="'##:##'">
                             </div>
                             <a v-on:click="calculate" class="mybutton" id="button-calc">Calcular</a>
                         </div>
