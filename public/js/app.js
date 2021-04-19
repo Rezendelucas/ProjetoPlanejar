@@ -1938,6 +1938,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
         console.log("Erro dispardo!");
       });
+      this.nameFunc = '';
+      this.hourEnter = '';
+      this.hourExit = '';
     }
   }
 });
@@ -38348,17 +38351,11 @@ var render = function() {
                             rawName: "v-model",
                             value: _vm.hourEnter,
                             expression: "hourEnter"
-                          },
-                          {
-                            name: "mask",
-                            rawName: "v-mask",
-                            value: "##:##",
-                            expression: "'##:##'"
                           }
                         ],
                         staticClass: "form-control",
                         attrs: {
-                          type: "text",
+                          type: "time",
                           id: "enterInput",
                           name: "enter"
                         },
@@ -38404,7 +38401,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { type: "text", id: "exitInput", name: "exit" },
+                        attrs: { type: "time", id: "exitInput", name: "exit" },
                         domProps: { value: _vm.hourExit },
                         on: {
                           input: function($event) {
