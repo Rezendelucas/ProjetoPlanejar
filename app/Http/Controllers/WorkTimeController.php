@@ -76,8 +76,13 @@ class workTimeController extends Controller
 
         //busca os registros a serem listados na view
         $registros = $newRegistro->listagem();
-        dd($registros);
-        return view('/' ,compact('registros'));
+        //dd($registros);
+
+        $return['listagem'] = $registros;
+
+        echo json_encode($return);
+        //json_encode($return);
+        return;
 
     }
 }
