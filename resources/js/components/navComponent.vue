@@ -7,7 +7,7 @@
             </a>
         </span>
         <span>
-            <p id="nav-text">Teste de Programação Web</p>
+            <p id="nav-text">Teste - Programação Web</p>
         </span>
     </nav>
 

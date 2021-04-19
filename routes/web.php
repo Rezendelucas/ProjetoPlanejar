@@ -15,7 +15,7 @@ use App\Http\Controllers\workTimeController;
 */
 
 Route::get('/', function () {
-    return view('vue-teste');
+    return view('vue_index');
 });
 
 Auth::routes();

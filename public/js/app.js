@@ -1896,8 +1896,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'formComponente'
+  name: 'formComponente',
+  data: function data() {
+    return {
+      nameFunc: '',
+      hourEnter: '',
+      hourExit: '',
+      registers: [],
+      id: '',
+      name: '',
+      date: '',
+      day: '',
+      night: ''
+    };
+  }
 });
 
 /***/ }),
@@ -1967,6 +1981,7 @@ Vue.component('navComponent', __webpack_require__(/*! ./components/navComponent.
  */
 
 var app = new Vue({
+  name: "PlanejarForm",
   el: '#app'
 });
 
@@ -37721,117 +37736,178 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("section", { attrs: { id: "form" } }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-3", attrs: { id: "form-table" } }, [
+          _c("form", [
+            _c("h4", [_vm._v("Nome do funcionário:")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mb-3", staticStyle: { width: "15vw" } }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nameFunc,
+                    expression: "nameFunc"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "funcInput", name: "func" },
+                domProps: { value: _vm.nameFunc },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.nameFunc = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _vm.nameFunc.trim() !== ""
+              ? _c("div", [
+                  _c("h4", [_vm._v("Insira seu periodo de trabalho:")]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "mb-3", staticStyle: { width: "15vw" } },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "enterInput" }
+                        },
+                        [_vm._v("Entrada:")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hourEnter,
+                            expression: "hourEnter"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "enterInput",
+                          name: "enter"
+                        },
+                        domProps: { value: _vm.hourEnter },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.hourEnter = $event.target.value
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "mb-3", staticStyle: { width: "15vw" } },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-label",
+                          attrs: { for: "exitInput" }
+                        },
+                        [_vm._v("Saida:")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hourExit,
+                            expression: "hourExit"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", id: "exitInput", name: "exit" },
+                        domProps: { value: _vm.hourExit },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.hourExit = $event.target.value
+                          }
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "mybutton", attrs: { id: "button-calc" } },
+                    [_vm._v("Calcular")]
+                  )
+                ])
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.registers.length > 0
+          ? _c("div", { staticClass: "col-9", attrs: { id: "result-table" } }, [
+              _c("h4", { staticStyle: { color: "var(--main-strong-blue)" } }, [
+                _vm._v("Horas trabalhadas:")
+              ]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table", staticStyle: { width: "100%" } },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.registers, function(register, index) {
+                      return _c("tr", { key: register.id }, [
+                        _c("td", [_vm._v(_vm._s(register.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(register.date))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(register.day))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(register.night))])
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid" }, [
-      _c("section", { attrs: { id: "form" } }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-3", attrs: { id: "form-table" } }, [
-            _c("form", [
-              _c("h4", [_vm._v("Nome do funcionário:")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "mb-3", staticStyle: { width: "15vw" } },
-                [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", id: "funcInput", name: "func" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Insira seu periodo de trabalho:")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "mb-3", staticStyle: { width: "15vw" } },
-                [
-                  _c(
-                    "label",
-                    { staticClass: "form-label", attrs: { for: "enterInput" } },
-                    [_vm._v("Entrada:")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", id: "enterInput", name: "enter" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "mb-3", staticStyle: { width: "15vw" } },
-                [
-                  _c(
-                    "label",
-                    { staticClass: "form-label", attrs: { for: "exitInput" } },
-                    [_vm._v("Saida:")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", id: "exitInput", name: "exit" }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "mybutton", attrs: { id: "button-calc" } },
-                [_vm._v("Calcular")]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-9", attrs: { id: "result-table" } }, [
-            _c("h4", { staticStyle: { color: "var(--main-strong-blue)" } }, [
-              _vm._v("Horas trabalhadas:")
-            ]),
-            _vm._v(" "),
-            _c(
-              "table",
-              { staticClass: "table", staticStyle: { width: "100%" } },
-              [
-                _c("thead", [
-                  _c("tr", [
-                    _c("th", { attrs: { scope: "col" } }, [
-                      _vm._v("Funcionario")
-                    ]),
-                    _vm._v(" "),
-                    _c("th", { attrs: { scope: "col" } }, [_vm._v("Turno")]),
-                    _vm._v(" "),
-                    _c("th", { attrs: { scope: "col" } }, [_vm._v("Duração")])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tbody", [
-                  _c("tr", [
-                    _c("td", [_vm._v("Jill")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Diurno")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("05:42")])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Jill")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("Noturno")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v("04:05")])
-                  ])
-                ])
-              ]
-            )
-          ])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Funcionario")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Data")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Diurno")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Noturno")])
       ])
     ])
   }
@@ -37877,7 +37953,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("span", [
           _c("p", { attrs: { id: "nav-text" } }, [
-            _vm._v("Teste de Programação Web")
+            _vm._v("Teste - Programação Web")
           ])
         ])
       ]

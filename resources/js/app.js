@@ -29,5 +29,6 @@ Vue.component('navComponent', require('./components/navComponent.vue').default);
  */
 
 const app = new Vue({
+    name: "PlanejarForm",
     el: '#app',
 });

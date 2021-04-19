@@ -6,44 +6,45 @@
                     <form>
                         <h4>Nome do funcionário:</h4>
                         <div class="mb-3" style="width: 15vw">
-                            <input type="text" class="form-control" id="funcInput" name="func">
+                            <input type="text" class="form-control" id="funcInput" name="func"  v-model="nameFunc">
                         </div>
-                        <h4>Insira seu periodo de trabalho:</h4>
-                        <div class="mb-3" style="width: 15vw">
-                            <label for="enterInput" class="form-label">Entrada:</label>
-                            <input type="text" class="form-control" id="enterInput" name="enter">
+                        <div v-if="nameFunc.trim() !== '' ">
+                            <h4>Insira seu periodo de trabalho:</h4>
+                            <div class="mb-3" style="width: 15vw">
+                                <label for="enterInput" class="form-label">Entrada:</label>
+                                <input type="text" class="form-control" id="enterInput" name="enter" v-model="hourEnter">
+                            </div>
+                            <div class="mb-3" style="width: 15vw">
+                                <label for="exitInput" class="form-label">Saida:</label>
+                                <input type="text" class="form-control" id="exitInput" name="exit" v-model="hourExit">
+                            </div>
+                            <button class="mybutton" id="button-calc">Calcular</button>
                         </div>
-                        <div class="mb-3" style="width: 15vw">
-                            <label for="exitInput" class="form-label">Saida:</label>
-                            <input type="text" class="form-control" id="exitInput" name="exit">
-                        </div>
-                        <button class="mybutton" id="button-calc">Calcular</button>
                     </form>
                 </div>
-                <div class="col-9" id="result-table">
+
+                <div class="col-9" id="result-table" v-if="registers.length > 0">
                     <h4 style="color: var(--main-strong-blue)">Horas trabalhadas:</h4>
                     <table class="table" style="width:100%">
                         <thead>
                         <tr>
                             <th scope="col">Funcionario</th>
-                            <th scope="col">Turno</th>
-                            <th scope="col">Duração</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Diurno</th>
+                            <th scope="col">Noturno</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Diurno</td>
-                            <td>05:42</td>
-                        </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Noturno</td>
-                            <td>04:05</td>
+                        <tr v-for="(register, index) in registers" :key="register.id">
+                            <td>{{register.name}}</td>
+                            <td>{{register.date}}</td>
+                            <td>{{register.day}}</td>
+                            <td>{{register.night}}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </section>
      </div>
@@ -52,6 +53,19 @@
 <script>
     export default {
         name: 'formComponente',
+        data() {
+            return{
+                nameFunc: '',
+                hourEnter: '',
+                hourExit: '',
+                registers: [],
+                id: '',
+                name: '',
+                date: '',
+                day: '',
+                night: ''
+            }
+        }
     }
 </script>
 
