@@ -20,6 +20,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/calculate_hours', ['as'=>'Calculo de horas trabalhadas' , 'uses'=>'App\Http\Controllers\WorkTimeController@newCalc']);
+Route::post('/calculate_hours', ['as'=>'Calculo de horas trabalhadas' , 'uses'=>'App\Http\Controllers\WorkTimeController@newCalc']);
 
 

@@ -18,32 +18,38 @@
                                 <label for="exitInput" class="form-label">Saida:</label>
                                 <input type="text" class="form-control" id="exitInput" name="exit" v-model="hourExit">
                             </div>
-                            <button class="mybutton" id="button-calc">Calcular</button>
+                            <a v-on:click="calculate" class="mybutton" id="button-calc">Calcular</a>
                         </div>
                     </form>
                 </div>
 
-                <div class="col-9" id="result-table" v-if="registers.length > 0">
+                <div class="col-9" id="result-table" v-if="mydata.length > 0">
                     <h4 style="color: var(--main-strong-blue)">Horas trabalhadas:</h4>
                     <table class="table" style="width:100%">
                         <thead>
                         <tr>
                             <th scope="col">Funcionario</th>
                             <th scope="col">Data</th>
+                            <th scope="col">Entrada</th>
+                            <th scope="col">Saida</th>
                             <th scope="col">Diurno</th>
                             <th scope="col">Noturno</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(register, index) in registers" :key="register.id">
-                            <td>{{register.name}}</td>
-                            <td>{{register.date}}</td>
-                            <td>{{register.day}}</td>
-                            <td>{{register.night}}</td>
+                        <tr v-for="(register, index) in mydata" :key="register.id">
+                            <td>{{register.funcionario}}</td>
+                            <td>{{register.created_at}}</td>
+                            <td>{{register.entrada}}</td>
+                            <td>{{register.saida}}</td>
+                            <td>{{register.diurno}}</td>
+                            <td>{{register.noturno}}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
+
+
 
             </div>
         </section>
@@ -55,17 +61,42 @@
         name: 'formComponente',
         data() {
             return{
+                order: [],
                 nameFunc: '',
                 hourEnter: '',
                 hourExit: '',
-                registers: [],
-                id: '',
-                name: '',
-                date: '',
-                day: '',
-                night: ''
+                mydata: [],
+                funcionario: '',
+                created_at: '',
+                entrada: '',
+                saida: '',
+                diurno: '',
+                noturno: '',
+                info: null
             }
-        }
+        },
+        methods:{
+            calculate(){
+                axios.post(`/calculate_hours`, {
+                    func: this.nameFunc,
+                    enter: this.hourEnter,
+                    exit:  this.hourExit
+                })
+                    .then(response => {
+                        this.info = "Desabilitado!!!"
+                        console.log(response.data)
+                        //response.data.forEach(function (item) {
+                            this.mydata = response.data;
+
+                        //});
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        console.log("Erro dispardo!")
+                    })
+            }
+        },
+
     }
 </script>
 
@@ -91,6 +122,7 @@
         border: 5px;
         color: var(--light);
         text-decoration: none;
+        cursor: pointer;
     }
 
     #result-table{

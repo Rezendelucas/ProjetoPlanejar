@@ -25,7 +25,7 @@ class RegistroDiario extends Model
 
     public function listagem()
     {
-        $registros = RegistroDiario::select()->paginate($this->totalpage);
+        $registros = RegistroDiario::select()->get();
         return $registros;
     }
 }

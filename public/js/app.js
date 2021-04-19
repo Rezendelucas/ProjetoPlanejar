@@ -1897,20 +1897,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'formComponente',
   data: function data() {
     return {
+      order: [],
       nameFunc: '',
       hourEnter: '',
       hourExit: '',
-      registers: [],
-      id: '',
-      name: '',
-      date: '',
-      day: '',
-      night: ''
+      mydata: [],
+      funcionario: '',
+      created_at: '',
+      entrada: '',
+      saida: '',
+      diurno: '',
+      noturno: '',
+      info: null
     };
+  },
+  methods: {
+    calculate: function calculate() {
+      var _this = this;
+
+      axios.post("/calculate_hours", {
+        func: this.nameFunc,
+        enter: this.hourEnter,
+        exit: this.hourExit
+      }).then(function (response) {
+        _this.info = "Desabilitado!!!";
+        console.log(response.data); //response.data.forEach(function (item) {
+
+        _this.mydata = response.data; //});
+      })["catch"](function (error) {
+        console.log(error);
+        console.log("Erro dispardo!");
+      });
+    }
   }
 });
 
@@ -6489,7 +6517,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n:root {\n    --main-strong-blue: #08121e;\n    --main-strong-red: #882d24;\n}\n#form {\n    height: 100vh;\n    padding: 50px;\n    padding-top: 150px ;\n    color: var(--main-strong-blue);\n}\n.mybutton{\n    background-color: var(--main-strong-red);\n    border-radius: 50px;\n    padding: 5px 20px;\n    border: 5px;\n    color: var(--light);\n    text-decoration: none;\n}\n#result-table{\n    color: var(--light);\n    width: 70vw;\n    height: 40vh;\n    border-radius: 50px;\n    padding: 30px;\n    justify-content: center;\n}\n#form-table{\n    padding: 30px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n:root {\n    --main-strong-blue: #08121e;\n    --main-strong-red: #882d24;\n}\n#form {\n    height: 100vh;\n    padding: 50px;\n    padding-top: 150px ;\n    color: var(--main-strong-blue);\n}\n.mybutton{\n    background-color: var(--main-strong-red);\n    border-radius: 50px;\n    padding: 5px 20px;\n    border: 5px;\n    color: var(--light);\n    text-decoration: none;\n    cursor: pointer;\n}\n#result-table{\n    color: var(--light);\n    width: 70vw;\n    height: 40vh;\n    border-radius: 50px;\n    padding: 30px;\n    justify-content: center;\n}\n#form-table{\n    padding: 30px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -37850,8 +37878,12 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "button",
-                    { staticClass: "mybutton", attrs: { id: "button-calc" } },
+                    "a",
+                    {
+                      staticClass: "mybutton",
+                      attrs: { id: "button-calc" },
+                      on: { click: _vm.calculate }
+                    },
                     [_vm._v("Calcular")]
                   )
                 ])
@@ -37859,7 +37891,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm.registers.length > 0
+        _vm.mydata.length > 0
           ? _c("div", { staticClass: "col-9", attrs: { id: "result-table" } }, [
               _c("h4", { staticStyle: { color: "var(--main-strong-blue)" } }, [
                 _vm._v("Horas trabalhadas:")
@@ -37873,15 +37905,19 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.registers, function(register, index) {
+                    _vm._l(_vm.mydata, function(register, index) {
                       return _c("tr", { key: register.id }, [
-                        _c("td", [_vm._v(_vm._s(register.name))]),
+                        _c("td", [_vm._v(_vm._s(register.funcionario))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(register.date))]),
+                        _c("td", [_vm._v(_vm._s(register.created_at))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(register.day))]),
+                        _c("td", [_vm._v(_vm._s(register.entrada))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(register.night))])
+                        _c("td", [_vm._v(_vm._s(register.saida))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(register.diurno))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(register.noturno))])
                       ])
                     }),
                     0
@@ -37904,6 +37940,10 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Funcionario")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Data")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Entrada")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Saida")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Diurno")]),
         _vm._v(" "),

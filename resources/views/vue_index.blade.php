@@ -14,7 +14,10 @@
             <form-component></form-component>
         </div>
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+
+
 </html>
 
 

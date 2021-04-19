@@ -13,12 +13,13 @@ class workTimeController extends Controller
 {
     public function newCalc(Request $request){
 
-        //separa a requisição
-        $data = $request->all();
+        //error_log($request->func);
+        //return "Alone in the space";
+
 
         //pega o dado e desmembra em horas  e minutos
-        $entrada = $data['enter'];
-        $saida = $data['exit'];
+        $entrada = $request->enter;
+        $saida = $request->exit;
 
         $entrada = explode( ':', $entrada );
         $saida   = explode( ':', $saida );
@@ -31,6 +32,8 @@ class workTimeController extends Controller
         $contdiurno = 0;
         $contnoturno = 0;
 
+
+
         //separa horas diurnas e noturnas de acordo com as regras
         while ($inicio != $saidamin){
             $inicio++;
@@ -38,10 +41,10 @@ class workTimeController extends Controller
             if($inicio <= 300){
                 $contnoturno++;
             }
-            if($inicio > 300 && $inicio < 1320){
+            if($inicio > 300 && $inicio <= 1320){
                 $contdiurno++;
             }
-            if($inicio >= 1320 && $inicio < 1440){
+            if($inicio > 1320 && $inicio <= 1440){
                 $contnoturno++;
             }
             if($inicio > 1440){
@@ -64,24 +67,19 @@ class workTimeController extends Controller
         //cria um novo registro diario e o objeto que será inserido neste registro
         $newRegistro = new RegistroDiario();
         $myRegistro = [
-         "funcionario" => $data['func'],
+         "funcionario" => $request->func,
          "entrada"     => $entradaProcessada,
          "saida"       => $saidaProcessada,
          "diurno"      => sprintf('%02d:%02d', $contdiurno / 60, $contdiurno % 60),
          "noturno"     => sprintf('%02d:%02d', $contnoturno / 60, $contnoturno % 60),
         ];
         $newRegistro->cadastro($myRegistro);
-        //dd($myRegistro);
-
 
         //busca os registros a serem listados na view
         $registros = $newRegistro->listagem();
         //dd($registros);
 
-        $return['listagem'] = $registros;
-
-        echo json_encode($return);
-        //json_encode($return);
+        echo json_encode($registros);
         return;
 
     }
