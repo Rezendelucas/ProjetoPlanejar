@@ -1,3 +1,36 @@
+## Informações sobre o desenvolvimento
+
+Aplicação desenvolvida para tarefa  proposta no arquivo doc "prova 2 - Programador" presente na raiz do projeto, para o desenvolvimento foi utilizado as seguintes tecnologias:
+- HTML
+- CSS
+- Javascript
+- PHP
+- PostgreSQL
+- Laravel
+- Vue.js
+- Axios
+- Bootstrap
+- Git
+
+Ferramentas:
+- PHP 7.4
+- Laravel 8.3
+- Vue.js 2.x
+- postgresql 13.2.2
+- IDE PhpStorm 2020 1.1
+
+## Instalação e uso
+
+Para rodar a aplicação, faça um clone do projeto no diretoria desejado e sigas os seguintes passo:
+- Crie o arquivo ".env" contendo as configurações que serão usadas para conexão.
+- Crie o banco com o nome utilizado no ".env".
+- Abra o terminal no diretorio do projeto e utilize o comando "php artisan migrate" para criar as tabelas no banco(caso esteja utilizando outro banco deverar criar cada tabela de forma manual).
+- Caso a aplicação nao esteja em um servidor, utilize o comando "php artisan serv" para iniciar o projeto no endereço "localhost:8000".
+
+
+## Informações sobre o Laravel
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
