@@ -31,7 +31,7 @@
         padding-left: 0;
         top: 0;
         left: 0;
-        width: 100vw;
+        width: 100%;
         height: 80px;
         z-index: 10;
         background-image: -webkit-linear-gradient(var(--main-strong-red), var(--light));

@@ -22,6 +22,7 @@ window.Vue = require('vue').default;
 
 Vue.component('formComponent', require('./components/formComponent.vue').default);
 Vue.component('navComponent', require('./components/navComponent.vue').default);
+Vue.component('tableComponent', require('./components/tableComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

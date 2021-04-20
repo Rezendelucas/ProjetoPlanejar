@@ -13,10 +13,6 @@ class workTimeController extends Controller
 {
     public function newCalc(Request $request){
 
-        //error_log($request->func);
-        //return "Alone in the space";
-
-
         //pega o dado e desmembra em horas  e minutos
         $entrada = $request->enter;
         $saida = $request->exit;
@@ -31,8 +27,6 @@ class workTimeController extends Controller
         $inicio = $entradamin;
         $contdiurno = 0;
         $contnoturno = 0;
-
-
 
         //separa horas diurnas e noturnas de acordo com as regras
         while ($inicio != $saidamin){
@@ -52,24 +46,26 @@ class workTimeController extends Controller
             }
         }
 
-        //Cria o timestemp com a data atual passando os horarios de entrada e saida
+        //Cria a data atual passando os horarios de entrada e saida
         $hoje = date('d-m-Y');
 
-        $entradaProcessada = $hoje." ".sprintf('%02d:%02d', $entradamin / 60, $entradamin % 60);
+        $entradaProcessada = new DateTime($hoje." ".sprintf('%02d:%02d', $entradamin / 60, $entradamin % 60));
         // se o horario de saida for menor q o de entrada o dia virou entao incrementa o dia
         if($saidamin > $entradamin) {
-            $saidaProcessada = $hoje . " " . sprintf('%02d:%02d', $saidamin / 60, $saidamin % 60);
+            $saidaProcessada = new DateTime($hoje . " " . sprintf('%02d:%02d', $saidamin / 60, $saidamin % 60));
         }else {
             $saidaProcessada = new DateTime($hoje . " " . sprintf('%02d:%02d', $saidamin / 60, $saidamin % 60));
             $saidaProcessada->modify('+1 day');
         }
 
+
+
         //cria um novo registro diario e o objeto que será inserido neste registro
         $newRegistro = new RegistroDiario();
         $myRegistro = [
          "funcionario" => $request->func,
-         "entrada"     => $entradaProcessada,
-         "saida"       => $saidaProcessada,
+         "entrada"     => sprintf($entradaProcessada->format('d/m/Y H:i')),
+         "saida"       => sprintf($saidaProcessada->format('d/m/Y H:i')),
          "diurno"      => sprintf('%02d:%02d', $contdiurno / 60, $contdiurno % 60),
          "noturno"     => sprintf('%02d:%02d', $contnoturno / 60, $contnoturno % 60),
         ];
@@ -77,7 +73,6 @@ class workTimeController extends Controller
 
         //busca os registros a serem listados na view
         $registros = $newRegistro->listagem();
-        //dd($registros);
 
         echo json_encode($registros);
         return;

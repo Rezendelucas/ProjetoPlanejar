@@ -25,7 +25,15 @@ class RegistroDiario extends Model
 
     public function listagem()
     {
-        $registros = RegistroDiario::select()->get();
+        $registros = RegistroDiario::select(RegistroDiario::raw(
+            'date(created_at) as inscricao'
+            .', id'
+            .', funcionario'
+            .', entrada'
+            .', saida'
+            .', diurno'
+            .', noturno')
+        )->get();
         return $registros;
     }
 }

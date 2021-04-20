@@ -11,7 +11,8 @@
     <body>
         <div id="app">
             <nav-component></nav-component>
-            <form-component></form-component>
+
+            <table-component></table-component>
         </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

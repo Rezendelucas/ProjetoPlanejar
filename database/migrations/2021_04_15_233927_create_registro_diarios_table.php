@@ -16,8 +16,8 @@ class CreateRegistroDiariosTable extends Migration
         Schema::create('registro_diarios', function (Blueprint $table) {
             $table->id();
             $table->string('funcionario');
-            $table->timestamp('entrada');
-            $table->timestamp('saida');
+            $table->string('entrada');
+            $table->string('saida');
             $table->string('diurno');
             $table->string('noturno');
             $table->timestamp('updated_at');
